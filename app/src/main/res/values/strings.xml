@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">GitHubUsers</string>
+    <string name="service_unavailable_message">Service unavailable</string>
+    <string name="no_connection_message">No connection</string>
+    <string name="something_went_wrong">Something went wrong</string>
+    <string name="try_again">Try again</string>
+    <string name="email_text">Email:</string>
+    <string name="organization_text">Organization:</string>
+    <string name="following_count_text">Following count:</string>
+    <string name="followers_count_text">Followers count:</string>
+    <string name="creation_date_text">Creation Date:</string>
+</resources>
