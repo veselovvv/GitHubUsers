@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/progress_fullscreen"
+        android:id="@+id/progress_layout"
+        android:visibility="gone" />
+
+    <include layout="@layout/fail_fullscreen"
+        android:id="@+id/fail_layout"
+        android:visibility="gone" />
+
+    <LinearLayout style="@style/HorizontalLinearLayout">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/photoImageView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="16dp" />
+
+        <TextView
+            android:id="@+id/nameTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="8dp"
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:text="Name" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/HorizontalLinearLayout">
+
+        <TextView
+            android:text="@string/email_text"
+            style="@style/BoldText" />
+
+        <TextView
+            android:id="@+id/emailTextView"
+            tools:text="email@gmail.com"
+            style="@style/NormalText" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/HorizontalLinearLayout">
+
+        <TextView
+            android:text="@string/organization_text"
+            style="@style/BoldText" />
+
+        <TextView
+            android:id="@+id/organizationTextView"
+            tools:text="Organization"
+            style="@style/NormalText" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/HorizontalLinearLayout">
+
+        <TextView
+            android:text="@string/following_count_text"
+            style="@style/BoldText" />
+
+        <TextView
+            android:id="@+id/followingCountTextView"
+            tools:text="1000"
+            style="@style/NormalText" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/HorizontalLinearLayout">
+
+        <TextView
+            android:text="@string/followers_count_text"
+            style="@style/BoldText" />
+
+        <TextView
+            android:id="@+id/followersCountTextView"
+            tools:text="1000"
+            style="@style/NormalText" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/HorizontalLinearLayout">
+
+        <TextView
+            android:text="@string/creation_date_text"
+            style="@style/BoldText" />
+
+        <TextView
+            android:id="@+id/creationDateTextView"
+            tools:text="date"
+            style="@style/NormalText" />
+    </LinearLayout>
+</LinearLayout>
