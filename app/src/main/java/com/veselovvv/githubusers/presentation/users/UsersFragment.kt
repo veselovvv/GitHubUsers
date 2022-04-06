@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.veselovvv.githubusers.R
 import com.veselovvv.githubusers.core.GitHubUsersApp
 import com.veselovvv.githubusers.core.Retry
@@ -14,6 +15,7 @@ import com.veselovvv.githubusers.core.Retry
 class UsersFragment : Fragment() {
     private lateinit var viewModel: UsersViewModel
     private lateinit var recyclerView: RecyclerView
+    private lateinit var swipeToRefreshLayout: SwipeRefreshLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,9 +41,17 @@ class UsersFragment : Fragment() {
             }
         )
 
+        swipeToRefreshLayout = view.findViewById(R.id.swipeToRefresh)
+        swipeToRefreshLayout.setOnRefreshListener {
+            viewModel.observe(this, { adapter.update(it) })
+            viewModel.init()
+            swipeToRefreshLayout.isRefreshing = false
+        }
+
         recyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.adapter = adapter
         recyclerView.addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
+
         viewModel.observe(this, { adapter.update(it) })
         viewModel.init()
     }
