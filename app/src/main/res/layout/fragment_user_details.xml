@@ -14,6 +14,19 @@
         android:id="@+id/fail_layout"
         android:visibility="gone" />
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_user_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            app:navigationIcon="@drawable/ic_baseline_arrow_back_24">
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
     <LinearLayout style="@style/HorizontalLinearLayout">
 
         <de.hdodenhof.circleimageview.CircleImageView

@@ -1,9 +1,8 @@
 package com.veselovvv.githubusers.presentation.users
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
@@ -30,6 +29,19 @@ class UsersFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val toolbar: Toolbar = view.findViewById(R.id.toolbar_users)
+        toolbar.title = getString(R.string.app_name)
+        toolbar.inflateMenu(R.menu.users_menu)
+        toolbar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.action_search -> {
+                    //TODO
+                    true
+                }
+                else -> false
+            }
+        }
 
         val adapter = GitHubUsersAdapter(
             object : Retry {

@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import com.squareup.picasso.Picasso
@@ -43,6 +44,10 @@ class UserDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val toolbar: Toolbar = view.findViewById(R.id.toolbar_user_details)
+        toolbar.title = viewModel.getUserLogin()
+        toolbar.setNavigationOnClickListener { requireActivity().onBackPressed() }
 
         photoImageView = requireActivity().findViewById(R.id.photoImageView)
         progressLayout = requireActivity().findViewById(R.id.progress_layout)

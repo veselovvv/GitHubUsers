@@ -9,4 +9,5 @@
     <string name="following_count_text">Following count:</string>
     <string name="followers_count_text">Followers count:</string>
     <string name="creation_date_text">Creation Date:</string>
+    <string name="search_hint">Search users</string>
 </resources>
