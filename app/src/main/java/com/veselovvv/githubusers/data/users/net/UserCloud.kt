@@ -13,5 +13,6 @@ data class UserCloud(
     @SerializedName("avatar_url")
     private val avatarUrl: String
 ) : Abstract.Object<UserData, ToUserMapper> {
+    val userLogin get() = this.login
     override fun map(mapper: ToUserMapper) = mapper.map(id, login, avatarUrl)
 }

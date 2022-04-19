@@ -1,8 +1,12 @@
 package com.veselovvv.githubusers.presentation.users
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.isEmpty
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +19,7 @@ class UsersFragment : Fragment() {
     private lateinit var viewModel: UsersViewModel
     private lateinit var recyclerView: RecyclerView
     private lateinit var swipeToRefreshLayout: SwipeRefreshLayout
+    private lateinit var toolbar: Toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,19 +35,6 @@ class UsersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val toolbar: Toolbar = view.findViewById(R.id.toolbar_users)
-        toolbar.title = getString(R.string.app_name)
-        toolbar.inflateMenu(R.menu.users_menu)
-        toolbar.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.action_search -> {
-                    //TODO
-                    true
-                }
-                else -> false
-            }
-        }
-
         val adapter = GitHubUsersAdapter(
             object : Retry {
                 override fun tryAgain() = viewModel.fetchUsers()
@@ -52,6 +44,21 @@ class UsersFragment : Fragment() {
                     viewModel.showUser(login, avatarUrl)
             }
         )
+
+        toolbar = view.findViewById(R.id.toolbar_users)
+        toolbar.title = getString(R.string.app_name)
+        toolbar.inflateMenu(R.menu.users_menu)
+        toolbar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.action_search -> {
+                    val searchView = it.actionView as SearchView
+                    searchView.queryHint = getString(R.string.search_hint)
+                    searchView.setOnQueryTextListener(SimpleQueryListener(viewModel))
+                    true
+                }
+                else -> false
+            }
+        }
 
         swipeToRefreshLayout = view.findViewById(R.id.swipeToRefresh)
         swipeToRefreshLayout.setOnRefreshListener {
@@ -66,5 +73,15 @@ class UsersFragment : Fragment() {
 
         viewModel.observe(this, { adapter.update(it) })
         viewModel.init()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        if (toolbar.menu.isEmpty()) toolbar.inflateMenu(R.menu.users_menu)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        toolbar.menu.clear()
     }
 }

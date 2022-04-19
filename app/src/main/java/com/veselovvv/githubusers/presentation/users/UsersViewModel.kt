@@ -33,6 +33,17 @@ class UsersViewModel(
         }
     }
 
+    fun searchUsers(query: String) {
+        communication.map(listOf(UserUi.Progress))
+        viewModelScope.launch(Dispatchers.IO) {
+            val resultDomain = usersInteractor.searchUsers(query)
+            val resultUi = resultDomain.map(mapper)
+            withContext(Dispatchers.Main) {
+                resultUi.map(communication)
+            }
+        }
+    }
+
     fun observe(owner: LifecycleOwner, observer: Observer<List<UserUi>>) =
         communication.observe(owner, observer)
 
