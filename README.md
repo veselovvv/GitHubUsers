@@ -1,5 +1,5 @@
 # GitHubUsers
-Android App using Kotlin, Clean Architecture, MVVM, ViewModel, LiveData, Coroutines, Retrofit, Gson, Picasso and CircleImageView. 
+👥 Android App using Kotlin, Clean Architecture, MVVM, ViewModel, LiveData, Coroutines, Retrofit, Gson, Picasso and CircleImageView. 
 
 This app loads a list of GitHub users and detailed information about the users from an API (https://developer.github.com/v3/users/). 
 
