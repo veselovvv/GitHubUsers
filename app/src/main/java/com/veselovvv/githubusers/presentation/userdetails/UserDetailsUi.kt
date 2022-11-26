@@ -48,11 +48,16 @@ sealed class UserDetailsUi : UI {
             creationDateTextView: TextView
         ) {
             nameTextView.text = name
-            emailTextView.text = email ?: "No email"
-            organizationTextView.text = organization ?: "No organization"
+            emailTextView.text = email ?: NO_EMAIL
+            organizationTextView.text = organization ?: NO_ORGANIZATION
             followingCountTextView.text = followingCount.toString()
             followersCountTextView.text = followersCount.toString()
             creationDateTextView.text = creationDate.subSequence(0, 10)
+        }
+
+        companion object {
+            private const val NO_EMAIL = "No email"
+            private const val NO_ORGANIZATION = "No organization"
         }
     }
 

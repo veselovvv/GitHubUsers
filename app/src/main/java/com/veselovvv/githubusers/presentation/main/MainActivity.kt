@@ -1,14 +1,13 @@
 package com.veselovvv.githubusers.presentation.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.veselovvv.githubusers.R
 import com.veselovvv.githubusers.core.GitHubUsersApp
 import com.veselovvv.githubusers.presentation.main.Screens.Companion.USERS_SCREEN
 import com.veselovvv.githubusers.presentation.main.Screens.Companion.USER_DETAILS_SCREEN
 import com.veselovvv.githubusers.presentation.userdetails.UserDetailsFragment
 import com.veselovvv.githubusers.presentation.users.UsersFragment
-import java.lang.IllegalStateException
 
 class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: MainViewModel
@@ -28,7 +27,7 @@ class MainActivity : AppCompatActivity() {
                 USER_DETAILS_SCREEN -> {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.container, UserDetailsFragment())
-                        .addToBackStack("UserDetailsFragment")
+                        .addToBackStack(USER_DETAILS_FRAGMENT_NAME)
                         .commit()
                 }
                 else -> throw IllegalStateException("Screen id is undefined: $it")
@@ -39,5 +38,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         if (viewModel.navigateBack()) super.onBackPressed()
+    }
+
+    companion object {
+        private const val USER_DETAILS_FRAGMENT_NAME = "UserDetailsFragment"
     }
 }
