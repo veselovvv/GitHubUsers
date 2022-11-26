@@ -17,7 +17,6 @@ import com.veselovvv.githubusers.core.Retry
 
 class UsersFragment : Fragment() {
     private lateinit var viewModel: UsersViewModel
-    private lateinit var recyclerView: RecyclerView
     private lateinit var swipeToRefreshLayout: SwipeRefreshLayout
     private lateinit var toolbar: Toolbar
 
@@ -28,9 +27,7 @@ class UsersFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_users, container, false)
-    }
+    ): View? = inflater.inflate(R.layout.fragment_users, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -62,16 +59,16 @@ class UsersFragment : Fragment() {
 
         swipeToRefreshLayout = view.findViewById(R.id.swipeToRefresh)
         swipeToRefreshLayout.setOnRefreshListener {
-            viewModel.observe(this, { adapter.update(it) })
+            viewModel.observe(this) { adapter.update(it) }
             viewModel.init()
             swipeToRefreshLayout.isRefreshing = false
         }
 
-        recyclerView = view.findViewById(R.id.recyclerView)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.adapter = adapter
         recyclerView.addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
 
-        viewModel.observe(this, { adapter.update(it) })
+        viewModel.observe(this) { adapter.update(it) }
         viewModel.init()
     }
 

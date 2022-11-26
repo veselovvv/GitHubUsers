@@ -20,10 +20,10 @@ interface UserCache : Save<Pair<String, String>>, Read<Pair<String, String>> {
                 .putString(USER_AVATAR_URL_KEY, data.second)
                 .apply()
 
-        private companion object {
-            const val USER_LOGIN_FILENAME = "userLogin"
-            const val USER_LOGIN_KEY = "userLoginKey"
-            const val USER_AVATAR_URL_KEY = "userAvatarUrlKey"
+        companion object {
+            private const val USER_LOGIN_FILENAME = "userLogin"
+            private const val USER_LOGIN_KEY = "userLoginKey"
+            private const val USER_AVATAR_URL_KEY = "userAvatarUrlKey"
         }
     }
 }

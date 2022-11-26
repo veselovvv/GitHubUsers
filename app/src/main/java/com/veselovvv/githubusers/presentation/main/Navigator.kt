@@ -12,9 +12,9 @@ interface Navigator : Save<Int>, Read<Int> {
         override fun save(data: Int) = sharedPreferences.edit().putInt(CURRENT_SCREEN_KEY, data).apply()
         override fun read(): Int = sharedPreferences.getInt(CURRENT_SCREEN_KEY, 0)
 
-        private companion object {
-            const val NAVIGATOR_FILE_NAME = "navigation"
-            const val CURRENT_SCREEN_KEY = "screenId"
+        companion object {
+            private const val NAVIGATOR_FILE_NAME = "navigation"
+            private const val CURRENT_SCREEN_KEY = "screenId"
         }
     }
 }

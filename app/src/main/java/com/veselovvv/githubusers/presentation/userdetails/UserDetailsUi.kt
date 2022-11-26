@@ -1,13 +1,13 @@
 package com.veselovvv.githubusers.presentation.userdetails
 
-import android.view.View
 import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.veselovvv.githubusers.core.Retry
+import com.veselovvv.githubusers.presentation.main.UI
 
-sealed class UserDetailsUi {
+sealed class UserDetailsUi : UI {
     open fun map(progressLayout: FrameLayout) = Unit
     open fun map(
         nameTextView: TextView,
@@ -23,7 +23,7 @@ sealed class UserDetailsUi {
 
     object Progress : UserDetailsUi() {
         override fun map(progressLayout: FrameLayout) {
-            progressLayout.visibility = View.VISIBLE
+            progressLayout.makeVisible()
         }
     }
 
@@ -36,7 +36,7 @@ sealed class UserDetailsUi {
         private val creationDate: String
     ) : UserDetailsUi() {
         override fun map(progressLayout: FrameLayout) {
-            progressLayout.visibility = View.GONE
+            progressLayout.makeVisible(false)
         }
 
         override fun map(
@@ -58,15 +58,17 @@ sealed class UserDetailsUi {
 
     class Fail(private val message: String) : UserDetailsUi() {
         override fun map(progressLayout: FrameLayout) {
-            progressLayout.visibility = View.GONE
+            progressLayout.makeVisible(false)
         }
 
-        override fun map(failLayout: LinearLayout, messageTextView: TextView, tryAgainButton: Button, retry: Retry) {
-            failLayout.visibility = View.VISIBLE
+        override fun map(
+            failLayout: LinearLayout, messageTextView: TextView, tryAgainButton: Button, retry: Retry
+        ) {
+            failLayout.makeVisible()
             messageTextView.text = message
             tryAgainButton.setOnClickListener {
                 retry.tryAgain()
-                failLayout.visibility = View.GONE
+                failLayout.makeVisible(false)
             }
         }
     }

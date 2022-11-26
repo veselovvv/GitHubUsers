@@ -13,8 +13,8 @@ import retrofit2.Retrofit
 import java.util.concurrent.TimeUnit
 
 class CoreModule : BaseModule<MainViewModel> {
-    private companion object {
-        const val BASE_URL = "https://api.github.com/"
+    companion object {
+        private const val BASE_URL = "https://api.github.com/"
     }
 
     lateinit var gson: Gson

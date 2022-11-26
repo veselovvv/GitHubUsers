@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         viewModel = (application as GitHubUsersApp).getMainViewModel()
-        viewModel.observe(this, {
+        viewModel.observe(this) {
             when (it) {
                 USERS_SCREEN -> {
                     supportFragmentManager.beginTransaction()
@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 else -> throw IllegalStateException("Screen id is undefined: $it")
             }
-        })
+        }
         viewModel.init()
     }
 

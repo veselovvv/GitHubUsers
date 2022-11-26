@@ -44,7 +44,7 @@ class GitHubUsersAdapter(
     override fun getItemCount() = users.size
 
     abstract class GitHubUsersViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        open fun bind(user: UserUi) {}
+        open fun bind(user: UserUi) = Unit
 
         class FullscreenProgress(view: View) : GitHubUsersViewHolder(view)
 
