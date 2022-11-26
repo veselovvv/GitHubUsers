@@ -50,7 +50,11 @@ class UsersFragment : Fragment() {
                 R.id.action_search -> {
                     val searchView = it.actionView as SearchView
                     searchView.queryHint = getString(R.string.search_hint)
-                    searchView.setOnQueryTextListener(SimpleQueryListener(viewModel))
+                    searchView.setOnQueryTextListener(
+                        SimpleQueryListener.Base { query ->
+                            viewModel.searchUsers(query.toString())
+                        }
+                    )
                     true
                 }
                 else -> false
