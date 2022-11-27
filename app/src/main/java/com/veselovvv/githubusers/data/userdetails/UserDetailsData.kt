@@ -3,7 +3,7 @@ package com.veselovvv.githubusers.data.userdetails
 import com.veselovvv.githubusers.core.Abstract
 import com.veselovvv.githubusers.domain.userdetails.UserDetailsDomain
 
-class UserDetailsData(
+data class UserDetailsData(
     private val name: String,
     private val email: String?,
     private val organization: String?,
