@@ -8,7 +8,7 @@ import com.veselovvv.githubusers.domain.userdetails.UserDetailsDomainToUiMapper
 import com.veselovvv.githubusers.core.ResourceProvider
 
 sealed class UsersDetailsUi : Abstract.Object<Unit, UsersDetailsCommunication> {
-    class Success(
+    data class Success(
         private val userDetails: UserDetailsDomain,
         private val userDetailsMapper: UserDetailsDomainToUiMapper
     ) : UsersDetailsUi() {
@@ -18,7 +18,7 @@ sealed class UsersDetailsUi : Abstract.Object<Unit, UsersDetailsCommunication> {
         }
     }
 
-    class Fail(
+    data class Fail(
         private val errorType: ErrorType,
         private val resourceProvider: ResourceProvider
     ) : UsersDetailsUi() {
