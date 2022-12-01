@@ -10,7 +10,7 @@ import java.lang.Exception
 import java.net.UnknownHostException
 
 sealed class UsersDetailsDomain : Abstract.Object<UsersDetailsUi, UsersDetailsDomainToUiMapper> {
-    class Success(
+    data class Success(
         private val userDetails: UserDetailsData,
         private val userDetailsMapper: UserDetailsDataToDomainMapper
     ) : UsersDetailsDomain() {
@@ -18,7 +18,7 @@ sealed class UsersDetailsDomain : Abstract.Object<UsersDetailsUi, UsersDetailsDo
             mapper.map(userDetails.map(userDetailsMapper))
     }
 
-    class Fail(private val exception: Exception) : UsersDetailsDomain() {
+    data class Fail(private val exception: Exception) : UsersDetailsDomain() {
         override fun map(mapper: UsersDetailsDomainToUiMapper) = mapper.map(
             when (exception) {
                 is UnknownHostException -> ErrorType.NO_CONNECTION
